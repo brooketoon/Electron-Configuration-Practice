@@ -95,10 +95,11 @@ main{max-width:980px;margin:0 auto;padding:20px 16px 60px}
 .table-wrap{overflow-x:auto;padding:8px 2px 6px}
 .pt{display:grid;gap:var(--gap);
   grid-template-columns:var(--lab) repeat(2,var(--cell)) var(--lab) repeat(10,var(--cell)) var(--lab) repeat(6,var(--cell));
-  grid-auto-rows:var(--cell);width:max-content}
-.ft{display:grid;gap:var(--gap);grid-template-columns:var(--lab) repeat(14,var(--cell));grid-auto-rows:var(--cell);width:max-content;
+  grid-template-rows:minmax(var(--cell),auto);grid-auto-rows:var(--cell);width:max-content}
+.ft{display:grid;gap:var(--gap);grid-template-columns:var(--lab) repeat(14,var(--cell));grid-template-rows:minmax(var(--cell),auto);grid-auto-rows:var(--cell);width:max-content;
   margin-left:calc(var(--lab) + 2*var(--cell) + 3*var(--gap));margin-top:12px}
-.band{border-radius:6px;color:#fff;font-family:var(--display);font-weight:700;font-size:clamp(.6rem,1.4vw,.82rem);display:flex;align-items:center;justify-content:center;white-space:nowrap;overflow:hidden}
+.band{border-radius:6px;color:#fff;font-family:var(--display);font-weight:700;font-size:clamp(.6rem,1.4vw,.82rem);display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.05;padding:2px 3px;white-space:normal;overflow:visible}
+.band.s{font-size:clamp(.55rem,1.15vw,.74rem);justify-self:center;min-width:100%;width:max-content;max-width:calc(2*var(--cell) + 2*var(--lab) + 3*var(--gap));z-index:1}
 .band.s{background:var(--s)} .band.p{background:var(--p)} .band.d{background:var(--d);color:var(--d-ink)} .band.f{background:var(--f)}
 .lab{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:600;font-size:calc(var(--cell)*.48)}
 .lab.s{color:var(--s-t)} .lab.p{color:var(--p-t)} .lab.d{color:var(--d-t)} .lab.f{color:var(--f-t)}
@@ -493,7 +494,7 @@ function buildTable(noble){
   const mk = (cls, txt) => { const e = document.createElement('div'); e.className = cls; if (txt !== undefined) e.textContent = txt; return e; };
   const colOf = g => g <= 2 ? g+1 : g <= 12 ? g+2 : g+3;
 
-  add(pt, mk('band s','s'), 1, 2, 2);
+  add(pt, mk('band s','s-block'), 1, 2, 2);
   add(pt, mk('band d','d-block'), 1, 5, 10);
   add(pt, mk('band p','p-block'), 1, 16, 6);
   for (let r=1;r<=7;r++){
